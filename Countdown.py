@@ -17,7 +17,6 @@ bad_letters_vowels = random.choice(vowels)
 nice_letters_consonants = list("tns")
 bad_letters_consonants = list("vkxjqz")
 letters_gotten = ""
-numbers = []
 
 
 def choose_vowel():
@@ -74,18 +73,16 @@ def word_check_ask():
 def restart_prompt():
     global points
     global letters_gotten
-    global numbers
     res = input("Do you want to restart (Y/N): ")
     if res.lower().strip().replace(" ", "") in ["y", "yes"]:
         print("\n" * 10000)
         letters_gotten = ""
-        numbers = []
-        round_chooser()
+        round_asker()
     else:
         exit(f"Ok your final score was: {points}")
 
 
-def round_chooser():
+def round_asker():
     print("Welcome to Countdown!")
     round_name = input("Choose! Number round! or Word Round!").lower().strip()
     possible_ans_num = ["n", "nr", "num", "number round", "num r", "num round", "n r", "n.", "n.r"]
@@ -94,45 +91,9 @@ def round_chooser():
         main_num_round()
     if round_name in possible_ans_word:
         main_word_round()
-    else:
-        print("Invalid input")
-        round_chooser()
-
-
-def num_check_ask():
-    timeout = 30
-    t = Timer(timeout, print, ['Times up! You have been disqualified'])
-    t.start()
-    answer = input(f"You have {timeout} seconds to type the answer: ").strip().replace(" ", "").lower()
-    t.cancel()
-    return answer
-
-
-def num_chooser():
-    global numbers
-    if len(numbers) == 6:
-        main_num_round()
-    l_or_s = input("Choose! Large number or small number!").strip().lower().replace(" ", "")
-    possible_ans_l = ["l", "largenumber", "ln", "l.n", "largenum"]
-    possible_ans_s = ["s", "smallnumber", "sn", "s.n", "smallnum"]
-    if l_or_s in possible_ans_l:
-        print("Large number it is!")
-        numbers.append(random.randint(10, 20))
-    if l_or_s in possible_ans_s:
-        print("Small number it is!")
-        numbers.append(random.randint(1, 10))
-    else:
-        print("Invalid input")
-        num_chooser()
-
 
 def main_num_round():
-    global numbers
-    print(f"Your numbers are {numbers}!")
-    target_num = random.randint(100, 1000)
-    print(f"Your target is {target_num}!")
-    print("You have to use * to multiply, - to subtract, + to add and / to divide")
-    num_check_ask()
+    
 
 def main_word_round():
     global letters_gotten
@@ -165,4 +126,4 @@ def main_word_round():
     restart_prompt()
 
 
-round_chooser()
+round_asker()
