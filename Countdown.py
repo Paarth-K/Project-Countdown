@@ -150,19 +150,22 @@ def main_num_round():
     target_num = random.randint(100, 1000)
     print(f"Your target is \"{target_num}\"!")
     print("You have to use * to multiply, - to subtract, + to add and / to divide, you may use brackets \"()\"")
+    print("YOU MUST USE ALL NUMBERS!!!")
     user_guess_str = num_check_ask(60)
     user_guess_list = user_guess_str.replace("*", " ").replace("/", " ").replace(")", " ").replace("(", " ").replace(
         "+", " ").replace("-", " ").split()
-    if user_guess_list.sort() == numbers.sort():
+    user_guess_list.sort()
+    numbers.sort()
+    if user_guess_list == numbers:
         pass
     else:
-        print("Invalid input, restarting")
-        main_num_round()
+        print("Invalid input, disqualified")
+        exit(f"Your final score was: {points}")
     try:
         user_guess = eval(user_guess_str)
-    except:
-        print("Invalid input, restarting")
-        main_num_round()
+    except NameError:
+        print("Invalid input, disqualified")
+        exit(f"Your final score was: {points}")
     diff = abs(target_num - user_guess)
 
     print(f"That makes: {user_guess}")
