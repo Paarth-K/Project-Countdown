@@ -154,8 +154,11 @@ def main_num_round():
     user_guess_str = num_check_ask(60)
     user_guess_list = user_guess_str.replace("*", " ").replace("/", " ").replace(")", " ").replace("(", " ").replace(
         "+", " ").replace("-", " ").split()
+    user_guess_list = [int(i) for i in user_guess_list]
     user_guess_list.sort()
     numbers.sort()
+    print(user_guess_list)
+    print(numbers)
     if user_guess_list == numbers:
         pass
     else:
