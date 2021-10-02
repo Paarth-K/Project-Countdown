@@ -146,17 +146,23 @@ def main_num_round():
     global points
     for i in range(6):
         num_chooser()
+    list_of_operators = ["+", "-", "*"]
+    target_num_str = f"{numbers[0]}"
+    for i in range(5):
+        target_num_str += f"{random.choice(list_of_operators)}{numbers[i]}"
+    target_num = eval(target_num_str)
     print(f"Your numbers are {numbers}!")
-    target_num = random.randint(100, 1000)
     print(f"Your target is \"{target_num}\"!")
     print("You have to use * to multiply, - to subtract, + to add and / to divide, you may use brackets \"()\"")
-    print("YOU MUST USE ALL NUMBERS!!!")
+    print("YOU MUST USE ALL NUMBERS, AND ONLY ONCE EACH!!!")
     user_guess_str = num_check_ask(60)
     user_guess_list = user_guess_str.replace("*", " ").replace("/", " ").replace(")", " ").replace("(", " ").replace(
         "+", " ").replace("-", " ").split()
     user_guess_list = [int(i) for i in user_guess_list]
     user_guess_list.sort()
     numbers.sort()
+
+    possible_combo_to_make_exact = "{numbers[0]}"
     # print(user_guess_list)
     # print(numbers)
     if user_guess_list == numbers:
@@ -186,6 +192,7 @@ def main_num_round():
         points += 1
     else:
         print(f"Your guess was very far away! {diff} numbers away! You have gained no points")
+    print(f"The exact answer to work out {target_num} is {target_num_str}")
     restart_prompt()
 
 
@@ -221,4 +228,4 @@ def main_word_round():
 
 
 # Start the main program
-round_chooser() 
+round_chooser()
