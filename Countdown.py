@@ -33,7 +33,7 @@ def choose_vowel():
 
 # Chooses random consonants, the probability part is really working right now for this too
 def choose_consonants():
-    ran_list_c = random.choice([nice_letters_consonants] * 51 + [bad_letters_consonants] * 49)
+    # ran_list_c = random.choice([nice_letters_consonants] * 51 + [bad_letters_consonants] * 49)
     ran_list_c = consonants
     ran_c = random.choice(ran_list_c)
     return ran_c
