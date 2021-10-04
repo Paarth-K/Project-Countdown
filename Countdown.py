@@ -148,7 +148,7 @@ def main_num_round():
         num_chooser()
     list_of_operators = ["+", "-", "*"]
     target_num_str = f"{numbers[0]}"
-    for i in range(5):
+    for i in range(1, 6):
         target_num_str += f"{random.choice(list_of_operators)}{numbers[i]}"
     target_num = eval(target_num_str)
     print(f"Your numbers are {numbers}!")
